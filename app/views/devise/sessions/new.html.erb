@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-5">
+    <%= image_tag "cm_image.jpg", class:"cm-img-box" %>
+  </div>
+  <div class="col-md-7">
+    <br/><br/>
+    <form method="post" accept-charset="UTF-8" action="/users/sign_in" id="new_user" class="form-inline"><input type="hidden" value="✓" name="utf8"><input type="hidden" value="d4uYK3ZcEoJRTNB2ucFJUx1WAY+UZ02OMvQj3O1sDhFcUEQw7ZQPnWnOaa0y1EOc8kqHPHr+xQ4Jiob+AJP31g==" name="authenticity_token">
+      <div class="row-fluid">
+        <label for="user_email" class="col-md-2">District</label>
+        <%= select("district", "", [['Sagar', 1],['Chhatarpur', 2]], {prompt: 'Select District'}, class: 'form-control') %>
+        <!--<input type="text" name="district value="" class="col-md-6 form-control" autofocus="autofocus"> -->
+      </div>
+      <br>
+      <div class="row-fluid">
+        <label for="user_तीर्थस्थान" class="col-md-2">तीर्थस्थान</label>
+        <%= select("yatra", "name", get_yatras.collect {|p| [ p.name, p.id ] }, 
+          {prompt: 'Select Yatra'}, class: "col-md-6 form-control mrgn-right" )%>
+        <input type="submit" class="form-control btn-primary sbmt-btn-padding" value=" चयन करें  " name="commit">
+      </div>
+      <br/><div class="bdr col-md-8"></div><br/>
+    </form>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-inline"}) do |f| %>
+      <div class="row-fluid">
+        <%= f.label :user_name, class: "col-md-2" %>
+        <%= f.email_field :user_name , class:"col-md-6 form-control" %>
+      </div>
+      <br/><br/>
+      <div class="field">
+        <%= f.label :password, class: "col-md-2 " %>
+        <%= f.password_field :password, autocomplete: "off", class:"col-md-5 form-control" %>
+      </div>
+      <br/><br/><br/>
+      <div class="actions">
+        <%= f.submit "Log in", class: 'form-control col-md-offset-2 btn-primary sbmt-btn-padding' %>
+      </div>
+      <br/><div class="bdr col-md-8"></div><br/>
+    <% end %>
+  </div>
+</di
+

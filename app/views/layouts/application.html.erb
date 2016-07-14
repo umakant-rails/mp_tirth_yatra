@@ -9,6 +9,36 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container-fluid cntner-fld">
+      <!--<p class="notice"><%#= notice %></p>
+      <p class="alert"><%#= alert %></p>-->
+      <div class="row-fluid top-logo-bar">
+        <div class="col-md-11 left-logo-div">
+          <%= image_tag "logo0.jpg" %>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="col-md-1 right-logo-div"> <%= image_tag "mplogo1.jpg", class: 'mplogo-cls' %></div>
+        <div class="row-fluid">
+          <%= yield %>
+        </div>
+        <div class="col-md-10 col-md-offset-1 bottom-img-div">
+          <%= image_tag "index4.jpg", class: 'col-md-12' %>
+        </div>
+      </div>
+      <div class="row-fluid bottom-bar">
+        <div class="col-md-11">
+          <div class="row">
+            <div class="col-md-6">
+              <%= image_tag "nic.jpg", class: 'col-md-2' %>
+            </div>
+            <div class="col-md-6">
+              Design by Umakant Rajpoot
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
   </body>
 </html>

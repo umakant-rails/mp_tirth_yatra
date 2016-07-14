@@ -1,0 +1,2 @@
+class Yatra < ApplicationRecord
+end
