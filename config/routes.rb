@@ -4,4 +4,7 @@ Rails.application.routes.draw do
 
   root 'home#index'
   #root 'devise/sessions#new'
+  post '/homes/get_users' => "home#get_users"
+  resources :visitors
+  
 end

@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reg_no: 1
+  receipt_date: 2016-07-16 04:49:18
+  religion: MyString
+  name: MyString
+  sex: false
+  father_name: MyString
+  address: MyString
+  date_of_birth: 2016-07-16 04:49:18
+  identity_name: MyString
+  identity_number: MyString
+  user_id: 1
+  parent_id: 1
+  mobile_number: 1
+
+two:
+  reg_no: 1
+  receipt_date: 2016-07-16 04:49:18
+  religion: MyString
+  name: MyString
+  sex: false
+  father_name: MyString
+  address: MyString
+  date_of_birth: 2016-07-16 04:49:18
+  identity_name: MyString
+  identity_number: MyString
+  user_id: 1
+  parent_id: 1
+  mobile_number: 1

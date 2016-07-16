@@ -1,0 +1,135 @@
+<div class="row cstm-row">
+  <div class="col-md-6 bdr col-md-offset-2">
+    <div class="col-md-offset-4"><h4>आवेदनकर्ता का फार्म</h4></div>
+  </div>
+</div>
+<%= form_for (@visitor) do |f| %>
+  <div class="row cstm-row">
+    <div class="col-md-2 col-md-offset-2">रजि.क्र.</div>
+    <div class="col-md-2">
+      <%= f.text_field :reg_no, class:"col-md-4 form-control" %>
+    </div>
+  </div>
+  <div class="row cstm-row">
+    <div class="col-md-2 col-md-offset-2">आवेदन प्राप्ति दिनॉंक</div>
+    <div class="col-md-2">
+      <div class='input-group date' id='date_receipt_box'>
+        <%= f.text_field :receipt_date, class:"col-md-4 form-control"%>
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row cstm-row">
+    <div class="col-md-2 col-md-offset-2">धर्म</div>
+    <div class="col-md-2">
+      <%= f.select :religion, Visitor::RELIGION,  {prompt: 'धर्म चुनिये'}, class:"col-md-4 form-control" %>
+    </div>
+  </div>
+  <div class="row cstm-row">
+    <div class="col-md-2 col-md-offset-2">नाम</div>
+    <div class="col-md-4">
+      <%= f.text_field :name, class:"col-md-4 form-control" %>
+    </div>
+  </div>
+  <div class="row cstm-row">
+    <div class="col-md-2 col-md-offset-2">लिंग</div>
+    <div class="col-md-2">
+      <%= f.select :sex, Visitor::SEX, class:"col-md-4 form-control" %>
+    </div>
+  </div>
+  <div class="row cstm-row">
+    <div class="col-md-2 col-md-offset-2">पिता/पति का नाम</div>
+    <div class="col-md-4">
+      <%= f.text_field :father_name, class:"col-md-4 form-control" %>
+    </div>
+  </div>
+  <div class="row cstm-row">
+    <div class="col-md-2 col-md-offset-2">पता</div>
+    <div class="col-md-4">
+      <%= f.text_field :address, class:"col-md-4 form-control" %>
+    </div>
+  </div>
+  <div class="row cstm-row">
+    <div class="col-md-2 col-md-offset-2">मोबाइल नम्बर</div>
+    <div class="col-md-4">
+      <%= f.text_field :mobile_number, class:"col-md-4 form-control" %>
+    </div>
+  </div>
+  <div class="row cstm-row">
+    <div class="col-md-2 col-md-offset-2">जन्म दिनॉंक</div>
+    <div class="col-md-2">
+      <div class='input-group date' id='date_of_birth_box'>
+        <%= f.text_field :date_of_birth, class:"col-md-4 form-control" %>
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row cstm-row">
+    <div class="col-md-2 col-md-offset-2">परिचय पत्र</div>
+    <div class="col-md-4">
+      <%= f.text_field :identity_name, class:"col-md-4 form-control" %>
+    </div>
+  </div>
+  <div class="row cstm-row">
+    <div class="col-md-2 col-md-offset-2">परिचय पत्र का नम्बर</div>
+    <div class="col-md-4">
+      <%= f.text_field :identity_number, class:"col-md-4 form-control" %>
+    </div>
+  </div>
+  <div class="row cstm-row">
+    <div class="col-md-offset-4 col-md-2">
+      <%= f.submit "Log in", class: 'form-control btn-primary sbmt-btn-padding' %>
+    </div>
+  </div>
+<%end%>
+<br/><div class="row bdr"></div><br/>
+<div class="row">
+  <table class="table table-bordered visitor-table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>क्रमांक</th>
+        <th>रज़ि.क्र.</th>
+        <th>आ. दिनांक</th>
+        <th>धर्म</th>
+        <th>नाम</th>
+        <th>लिंग</th>
+        <th>पिता का नाम</th>
+        <th>पता</th>
+        <th>जिला</th>
+        <th>मो. नम्बर</th>
+        <th>जन्म दिनांक</th>
+        <th>आयु</th>
+        <th>परिचय पत्र </th>
+        <th>परिचय पत्र नम्बर</th>
+        <th>तह. नम्बर</th>
+        <th>यात्रा का नाम</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @visitors.each do |visitor | %>
+        <tr>
+          <td><%= visitor.id %></td>
+          <td><%= visitor.reg_no %></td>
+          <td><%= visitor.receipt_date %></td>
+          <td><%= visitor.religion %></td>
+          <td><%= visitor.name %></td>
+          <td><%= visitor.sex %></td>
+          <td><%= visitor.father_name %></td>
+          <td><%= visitor.address %></td>
+          <td><%=  %></td>
+          <td><%= visitor.mobile_number %></td>
+          <td><%= visitor.date_of_birth %></td>
+          <td><%=  %></td>
+          <td><%= visitor.identity_name %></td>
+          <td><%= visitor.identity_number %></td>
+          <td><%= visitor.user.id %></td>
+          <td><%= %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

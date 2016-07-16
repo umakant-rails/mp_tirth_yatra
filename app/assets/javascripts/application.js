@@ -14,4 +14,23 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
+//= require homes
+//= require moment
+//= require bootstrap-datetimepicker
 //= require_tree .
+
+var appFunction = function(type, message){
+  var showMessage = function(type, message){
+    var htmlMessageString = '';
+    if(type == 'success'){
+      htmlMessageString = htmlMessageString + '<p class="alert notice alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>' + message + '</p>';
+    } else if(type == 'error') {
+      htmlMessageString = htmlMessageString + '<p class="alert notice alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>' + message + '</p>';
+    }
+    $("#alert_msg").html(htmlMessageString);
+    $('html').scrollTop(0);
+  };
+  return {
+    showMessage: function(type, message){showMessage(type, message);}
+  }
+}();

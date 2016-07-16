@@ -1,15 +1,16 @@
 .cntner-fld{
   margin-top: 5px !important;
 }
-.top-logo-bar{}
+.top-logo-bar{ margin-top: 7px;}
 
 .left-logo-div{
-  padding: 4px;
+  padding: 4px 4px 6px 8px;
   margin-right: 5px;
+  border-bottom: 4px solid #3571bd;
   background: url(../assets/banner1.jpg);
   margin-left: -5px !important;
 }
-.left-logo-div img{ height: 76px;width: 490px;}
+.left-logo-div img{ height: 66px;width: 480px;}
 .right-logo-div{
   background: url(../assets/banner1.jpg);
 }
@@ -32,10 +33,10 @@
   height: 160px;
 }
 .mplogo-cls{
-  height: 84px;
+  height: 81px;
   margin-left: -15px;
   padding: 5px 5px 8px;
-  width: 106px;
+  width: 97px;
 }
 .cm-img-box{
   height: 185px;

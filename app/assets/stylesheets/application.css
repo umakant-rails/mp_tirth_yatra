@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+ 
+ .cstm-row {
+  margin-bottom:8px;
+ }
