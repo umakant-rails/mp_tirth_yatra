@@ -13,7 +13,7 @@ class CreateVisitors < ActiveRecord::Migration[5.0]
       t.string :identity_number
       t.integer :user_id
       t.integer :parent_id
-      t.integer :mobile_number
+      t.string :mobile_number
 
       t.timestamps
     end

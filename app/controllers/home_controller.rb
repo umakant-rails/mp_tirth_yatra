@@ -10,7 +10,8 @@ class HomeController < ApplicationController
   end
 
   def get_users
-    @users = User.all
+    @district = District.where(id: params[:district_id]).first
+    @users = @district.users
     respond_to do |format|
       format.html
       format.json { render json: @users }

@@ -17,6 +17,10 @@
 //= require homes
 //= require moment
 //= require bootstrap-datetimepicker
+
+//= require jquery-ui
+//= require jquery-ui/datepicker
+
 //= require_tree .
 
 var appFunction = function(type, message){

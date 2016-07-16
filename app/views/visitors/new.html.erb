@@ -13,18 +13,14 @@
   <div class="row cstm-row">
     <div class="col-md-2 col-md-offset-2">आवेदन प्राप्ति दिनॉंक</div>
     <div class="col-md-2">
-      <div class='input-group date' id='date_receipt_box'>
-        <%= f.text_field :receipt_date, class:"col-md-4 form-control"%>
-        <span class="input-group-addon">
-          <span class="glyphicon glyphicon-calendar"></span>
-        </span>
-      </div>
+      <%= f.text_field :receipt_date, class:"col-md-4 form-control"%>
     </div>
   </div>
   <div class="row cstm-row">
     <div class="col-md-2 col-md-offset-2">धर्म</div>
     <div class="col-md-2">
-      <%= f.select :religion, Visitor::RELIGION,  {prompt: 'धर्म चुनिये'}, class:"col-md-4 form-control" %>
+      <%#= f.select :religion, Visitor::RELIGION,  {prompt: 'धर्म चुनिये'}, class:"col-md-4 form-control" %>
+      <%= f.select :religion, Visitor::RELIGION, class:"col-md-4 form-control" %>
     </div>
   </div>
   <div class="row cstm-row">
@@ -60,12 +56,13 @@
   <div class="row cstm-row">
     <div class="col-md-2 col-md-offset-2">जन्म दिनॉंक</div>
     <div class="col-md-2">
-      <div class='input-group date' id='date_of_birth_box'>
-        <%= f.text_field :date_of_birth, class:"col-md-4 form-control" %>
-        <span class="input-group-addon">
-          <span class="glyphicon glyphicon-calendar"></span>
-        </span>
-      </div>
+      <%= f.text_field :date_of_birth, class:"col-md-4 form-control" %>
+    </div>
+    <div class="col-md-1">
+      <%= f.text_field :age, class:"col-md-1 form-control", disabled:"disabled" %>
+    </div>
+    <div class="col-md-1">
+           वर्ष
     </div>
   </div>
   <div class="row cstm-row">
@@ -114,20 +111,20 @@
         <tr>
           <td><%= visitor.id %></td>
           <td><%= visitor.reg_no %></td>
-          <td><%= visitor.receipt_date %></td>
+          <td><%= format_to_date(visitor.receipt_date) %></td>
           <td><%= visitor.religion %></td>
           <td><%= visitor.name %></td>
           <td><%= visitor.sex %></td>
           <td><%= visitor.father_name %></td>
           <td><%= visitor.address %></td>
-          <td><%=  %></td>
+          <td><%= (visitor.user && visitor.user.district) ? visitor.user.district.name : '' %></td>
           <td><%= visitor.mobile_number %></td>
-          <td><%= visitor.date_of_birth %></td>
-          <td><%=  %></td>
+          <td><%= format_to_date(visitor.receipt_date) %></td>
+          <td><%= visitor.age %></td>
           <td><%= visitor.identity_name %></td>
           <td><%= visitor.identity_number %></td>
-          <td><%= visitor.user.id %></td>
-          <td><%= %></td>
+          <td><%= visitor.user_id %></td>
+          <td><%= visitor.tour_place %></td>
         </tr>
       <% end %>
     </tbody>

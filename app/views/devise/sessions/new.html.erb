@@ -8,14 +8,14 @@
       <div class="row-fluid">
         <div class="col-md-2">District</div>
         <div class="col-md-4">
-          <%= select("yatra", "district", [['Sagar', 'Sagar'],['Chhatarpur', 'Chhatarpur']], {prompt: 'Select District'}, class: 'form-control') %>
+          <%= select("yatra", "district", @districts.collect {|p| [ p.name, p.id ] }, {prompt: 'Select District'}, class: 'form-control') %>
         </div>
       </div>
       <br/><br/>
       <div class="row-fluid">
         <div class="col-md-2">तीर्थस्थान</div>
         <div class="col-md-4">
-           <%= select("yatra", "name", get_yatras.collect {|p| [ p.name, p.id ] }, 
+           <%= select("yatra", "name", @tour_places.collect {|p| [ p.name, p.id ] }, 
           {prompt: 'Select Yatra'}, class: "col-md-6 form-control mrgn-right" )%> 
         </div>
         <div class="col-md-2">

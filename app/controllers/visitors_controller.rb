@@ -10,8 +10,7 @@ class VisitorsController < ApplicationController
   end
   
   def create
-    @visitor = Visitor.new(listing_params)
-    debugger
+    @visitor = current_user.visitors.new(listing_params)
     if @visitor.save!
       redirect_to new_visitor_path
     end
@@ -21,7 +20,7 @@ class VisitorsController < ApplicationController
   
   def listing_params
     params.require(:visitor).permit(:reg_no, :receipt_date, :religion, :name, :sex,
-      :father_name, :address, :date_of_birth, :identity_name, :identity_number
+      :father_name, :address, :date_of_birth, :identity_name, :identity_number, :mobile_number
     )
   end
   

@@ -1,0 +1,2 @@
+class TourPlace < ApplicationRecord
+end
