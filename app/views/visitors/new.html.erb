@@ -4,10 +4,21 @@
   </div>
 </div>
 <%= form_for (@visitor) do |f| %>
+  <div id="alert_msg" class="col-md-8 col-md-offset-2 alert_message">
+    <% if f.object.errors.present? %>
+      <p class="alert notice alert-<%= flash[:notice].present? ? "success" : "danger"%>">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <%= f.object.errors.full_messages.join("<br/>").html_safe %>
+      </p>
+    <% end %>
+  </div>
   <div class="row cstm-row">
     <div class="col-md-2 col-md-offset-2">रजि.क्र.</div>
     <div class="col-md-2">
-      <%= f.text_field :reg_no, class:"col-md-4 form-control" %>
+      <%= f.text_field :reg_no, class:"col-md-4 form-control", 
+      value: get_reg_number(@visitors), disabled:"disabled" %>
+      <%= f.hidden_field :reg_no, class:"col-md-4 form-control", 
+      value: get_reg_number(@visitors) %>
     </div>
   </div>
   <div class="row cstm-row">
@@ -60,6 +71,7 @@
     </div>
     <div class="col-md-1">
       <%= f.text_field :age, class:"col-md-1 form-control", disabled:"disabled" %>
+      <%= f.hidden_field :age, class:"col-md-1 form-control hidden_filed_age" %>
     </div>
     <div class="col-md-1">
            वर्ष
@@ -114,7 +126,7 @@
           <td><%= format_to_date(visitor.receipt_date) %></td>
           <td><%= visitor.religion %></td>
           <td><%= visitor.name %></td>
-          <td><%= visitor.sex %></td>
+          <td><%= (visitor.sex == true) ? 'Male' : 'Female' %></td>
           <td><%= visitor.father_name %></td>
           <td><%= visitor.address %></td>
           <td><%= (visitor.user && visitor.user.district) ? visitor.user.district.name : '' %></td>
@@ -124,7 +136,7 @@
           <td><%= visitor.identity_name %></td>
           <td><%= visitor.identity_number %></td>
           <td><%= visitor.user_id %></td>
-          <td><%= visitor.tour_place %></td>
+          <td><%= visitor.tour_place.name %></td>
         </tr>
       <% end %>
     </tbody>

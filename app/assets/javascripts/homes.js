@@ -1,16 +1,16 @@
 var authFunctions = function(){
   var validateDistrict = function(){
-    var district = $("#yatra_district").val();
+    var district = $("#tour_place_district_id").val();
     return (district.length > 0);
   };
   var validateYatraSelection = function(){
-    var yatraName = $("#yatra_name").val();
+    var yatraName = $("#tour_place_id").val();
     return (yatraName.length > 0);
   };
   var getUsers = function(){
     var htmlString = '<option value="">Select User</option>';
-    var district = $("#yatra_district").val();
-    var tourPlace = $("#yatra_name").val();
+    var district = $("#tour_place_district_id").val();
+    var tourPlace = $("#tour_place_id").val();
     $.ajax({
       url: '/homes/get_users',
       type:"post",

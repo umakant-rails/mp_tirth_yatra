@@ -4,28 +4,29 @@
   </div>
   <div class="col-md-7 row-fluid">
     <br/><br/>
-    <div class="yatra-block">
-      <div class="row-fluid">
-        <div class="col-md-2">District</div>
-        <div class="col-md-4">
-          <%= select("yatra", "district", @districts.collect {|p| [ p.name, p.id ] }, {prompt: 'Select District'}, class: 'form-control') %>
-        </div>
-      </div>
-      <br/><br/>
-      <div class="row-fluid">
-        <div class="col-md-2">तीर्थस्थान</div>
-        <div class="col-md-4">
-           <%= select("yatra", "name", @tour_places.collect {|p| [ p.name, p.id ] }, 
-          {prompt: 'Select Yatra'}, class: "col-md-6 form-control mrgn-right" )%> 
-        </div>
-        <div class="col-md-2">
-          <input type="button" class="form-control btn-primary" value="चयन करें" id='select_yatra' name="commit">
-        </div>
-      </div>
-      <br/><br/>
-      <br/><div class="bdr col-md-8"></div><br/>
-    </div>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: ""}) do |f| %>
+      <div class="yatra-block">
+        <div class="row-fluid">
+          <div class="col-md-2">District</div>
+          <div class="col-md-4">
+            <%= select("tour_place", "district_id", @districts.collect {|p| [ p.name, p.id ] }, {prompt: 'Select District'}, class: 'form-control') %>
+          </div>
+        </div>
+        <br/><br/>
+        <div class="row-fluid">
+          <div class="col-md-2">तीर्थस्थान</div>
+          <div class="col-md-4">
+             <%= select("tour_place", "id", @tour_places.collect {|p| [ p.name, p.id ] }, 
+            {prompt: 'Select Yatra'}, class: "col-md-6 form-control mrgn-right" )%> 
+          </div>
+          <div class="col-md-2">
+            <input type="button" class="form-control btn-primary" value="चयन करें" id='select_yatra' name="commit">
+          </div>
+        </div>
+        <br/><br/>
+        <br/><div class="bdr col-md-8"></div><br/>
+      </div>
+
       <div class="row-fluid">
         <div class="col-md-2">User Name</div>
         <div class="col-md-4">

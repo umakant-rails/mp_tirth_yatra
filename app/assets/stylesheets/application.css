@@ -19,3 +19,8 @@
  .cstm-row {
   margin-bottom:8px;
  }
+
+.alert_message {
+  position: fixed;
+  top: 20px;
+}

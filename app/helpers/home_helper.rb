@@ -5,7 +5,7 @@ module HomeHelper
   end
   
   def format_to_date(receipt_date)
-    return receipt_date.strftime("%d/%m/%Y")
+    return receipt_date.strftime("%d/%m/%Y") rescue ''
   end
   
 end

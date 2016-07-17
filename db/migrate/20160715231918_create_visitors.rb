@@ -14,7 +14,8 @@ class CreateVisitors < ActiveRecord::Migration[5.0]
       t.integer :user_id
       t.integer :parent_id
       t.string :mobile_number
-
+      t.integer :tour_place_id
+      t.integer :age
       t.timestamps
     end
   end
