@@ -1,0 +1,19 @@
+<tr>
+  <td><%= visitor.id %></td>
+  <td><%= visitor.reg_no %></td>
+  <td><%= format_to_date(visitor.receipt_date) %></td>
+  <td><%= visitor.religion %></td>
+  <td><%= visitor.name %></td>
+  <td><%= (visitor.sex == true) ? 'Male' : 'Female' %></td>
+  <td><%= visitor.father_name %></td>
+  <td><%= visitor.address %></td>
+  <td><%= (visitor.user && visitor.user.district) ? visitor.user.district.name : '' %></td>
+  <td><%= visitor.mobile_number %></td>
+  <td><%= format_to_date(visitor.receipt_date) %></td>
+  <td><%= visitor.age %></td>
+  <td><%= visitor.identity_name %></td>
+  <td><%= visitor.identity_number %></td>
+  <td><%= visitor.user_id %></td>
+  <td><%= visitor.tour_place.name %></td>
+  <td><%= (visitor.parent_id.present?) ? 'सहायक' : 'स्वयं' %>
+</tr>

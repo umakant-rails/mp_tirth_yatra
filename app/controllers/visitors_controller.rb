@@ -14,6 +14,7 @@ class VisitorsController < ApplicationController
 
   def create
     @assistant = nil
+
     params[:visitor][:tour_place_id] = session[:tour_place]["id"]
     @visitor = current_user.visitors.new(visitor_params)
 
@@ -26,7 +27,7 @@ class VisitorsController < ApplicationController
             @visitor = Visitor.new
           end
         end
-      else
+      elsif !is_uniq_assistant
         @visitor.errors.add(:Assistant, " is alreay exist")
       end
       format.html { render :new }
@@ -53,7 +54,7 @@ class VisitorsController < ApplicationController
   
   def get_visitors_and_tour_place
     @tour_place = TourPlace.where(id: session[:tour_place]["id"]).first
-    @visitors = @tour_place.visitors.all
+    @visitors = @tour_place.visitors.where(:parent_id => nil).order(reg_no: :desc)
   end
 
 end

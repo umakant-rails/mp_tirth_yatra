@@ -1,0 +1,33 @@
+<div class="row">
+  <table class="table table-bordered visitor-table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>क्र.</th>
+        <th>रज़ि.क्र.</th>
+        <th>आ. दिनांक</th>
+        <th>धर्म</th>
+        <th>नाम</th>
+        <th>लिंग</th>
+        <th>पिता का नाम</th>
+        <th>पता</th>
+        <th>जिला</th>
+        <th>मो. नम्बर</th>
+        <th>जन्म दिनांक</th>
+        <th>आयु</th>
+        <th>परिचय पत्र </th>
+        <th>परिचय पत्र नम्बर</th>
+        <th>तह. नम्बर</th>
+        <th>तह. नम्बर</th>
+        <th>स्वयं/सहा.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% visitors.each do |visitor | %>
+        <%= render partial: '/visitors/visitor_row', locals: {visitor: visitor} %>
+        <% if visitor.assistant.present? %>
+          <%= render partial: '/visitors/visitor_row', locals: {visitor: visitor.assistant} %>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

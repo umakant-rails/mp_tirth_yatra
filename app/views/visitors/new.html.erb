@@ -1,9 +1,9 @@
 <div class="row cstm-row">
   <div class="col-md-6 bdr col-md-offset-2">
     <% if @assistant.present?  %>
-      <div class="col-md-offset-4"><h4>सहायक का फार्म</h4></div>
+      <div class="col-md-offset-4"><h4>सहायक का फार्म (<%= @tour_place.name %> यात्रा)</h4></div>
     <% else %>
-      <div class="col-md-offset-4"><h4>आवेदनकर्ता का फार्म</h4></div>
+      <div class="col-md-offset-4"><h4>आवेदनकर्ता का फार्म (<%= @tour_place.name %> यात्रा)</h4></div>
     <% end %>
   </div>
 </div>
@@ -113,51 +113,4 @@
   </div>
 <%end%>
 <br/><div class="row bdr"></div><br/>
-<div class="row">
-  <table class="table table-bordered visitor-table">
-    <thead class="thead-inverse">
-      <tr>
-        <th>क्र.</th>
-        <th>रज़ि.क्र.</th>
-        <th>आ. दिनांक</th>
-        <th>धर्म</th>
-        <th>नाम</th>
-        <th>लिंग</th>
-        <th>पिता का नाम</th>
-        <th>पता</th>
-        <th>जिला</th>
-        <th>मो. नम्बर</th>
-        <th>जन्म दिनांक</th>
-        <th>आयु</th>
-        <th>परिचय पत्र </th>
-        <th>परिचय पत्र नम्बर</th>
-        <th>तह. नम्बर</th>
-        <th>तह. नम्बर</th>
-        <th>स्वयं/सहा.</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @visitors.each do |visitor | %>
-        <tr>
-          <td><%= visitor.id %></td>
-          <td><%= visitor.reg_no %></td>
-          <td><%= format_to_date(visitor.receipt_date) %></td>
-          <td><%= visitor.religion %></td>
-          <td><%= visitor.name %></td>
-          <td><%= (visitor.sex == true) ? 'Male' : 'Female' %></td>
-          <td><%= visitor.father_name %></td>
-          <td><%= visitor.address %></td>
-          <td><%= (visitor.user && visitor.user.district) ? visitor.user.district.name : '' %></td>
-          <td><%= visitor.mobile_number %></td>
-          <td><%= format_to_date(visitor.receipt_date) %></td>
-          <td><%= visitor.age %></td>
-          <td><%= visitor.identity_name %></td>
-          <td><%= visitor.identity_number %></td>
-          <td><%= visitor.user_id %></td>
-          <td><%= visitor.tour_place.name %></td>
-          <td><%= (visitor.parent_id.blank?) ? 'स्वयं' : 'सहायक' %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<%= render partial: '/visitors/visitor_list', locals: {visitors: @visitors} %>

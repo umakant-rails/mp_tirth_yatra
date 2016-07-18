@@ -6,6 +6,11 @@ class Visitor < ApplicationRecord
   belongs_to :user
   belongs_to :tour_place
 
+  #belongs_to :parent, :class_name => 'MyModel'
+  #has_many :children, :class_name => 'MyModel', :foreign_key => 'parent_id'
+  #belongs_to :parent, :class_name => "Visitor"
+  #has_one :assistant, :class_name => "Visitor", :dependent => :destroy, :foreign_key => "parent_id"
+
   validates  :reg_no, :presence => true
   validates  :receipt_date, :presence => true
   validates  :religion, :presence => true
@@ -19,5 +24,13 @@ class Visitor < ApplicationRecord
   validates  :mobile_number, :presence => true
   validates  :tour_place_id, :presence => true
   validates  :age, :presence => true
+
+  def assistant
+    return Visitor.where(:parent_id => self.id).first
+  end
+
+  def parent
+    return Visitor.where(:id => self.parent_id).first
+  end
 
 end
