@@ -110,11 +110,6 @@
     <div class="col-md-offset-4 col-md-2">
       <%= f.submit "सम्पादित करो", class: 'form-control btn-primary sbmt-btn-padding' %>
     </div>
-    <% if f.object.parent_id.present? %>
-      <div class="col-md-2" style="text-align: center;">
-        <%= f.link_to "छोड़ना", new_visitor_path, class: 'form-control btn-primary sbmt-btn-padding' %>
-      </div>
-    <% end %>
   </div>
 <%end%>
 <br/><div class="row bdr"></div><br/>

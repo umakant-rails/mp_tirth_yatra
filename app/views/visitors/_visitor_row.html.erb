@@ -16,4 +16,5 @@
   <td><%= visitor.user_id %></td>
   <td><%= visitor.tour_place.name %></td>
   <td><%= (visitor.parent_id.present?) ? 'सहायक' : 'स्वयं' %>
+  <td><%= link_to "चुने", edit_visitor_path(visitor), class: "btn btn-primary btn-sm" %>
 </tr>
