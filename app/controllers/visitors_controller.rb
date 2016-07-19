@@ -1,7 +1,7 @@
 class VisitorsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_visitor, only: [:show, :edit, :update, :destroy]
-  before_action :get_visitors_and_tour_place,:only=>[:new, :create, :edit]
+  before_action :get_visitors_and_tour_place,:only=>[:new, :create, :edit, :update]
 
   def index
     redirect_to new_visitor_path
@@ -40,14 +40,18 @@ class VisitorsController < ApplicationController
   end
 
   def update
+    is_asst_form_attached = params[:is_asst_form_attached].to_i
+
     respond_to do |format|
       if @visitor.update(visitor_params)
-        format.html { redirect_to @new_visitor_path, notice: 'Visitor was successfully updated.' }
+        if is_asst_form_attached == 1
+          @assistant = Visitor.new(parent_id: @visitor.id)
+        end
+        format.html { render :new, notice: 'Visitor was successfully updated.' }
       else
         format.html { render :edit }
       end
     end
-    redirect_to new_visitor_path
   end
 
   def destroy

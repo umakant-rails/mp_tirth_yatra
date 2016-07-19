@@ -20,9 +20,9 @@
     <div class="col-md-2 col-md-offset-2">रजि.क्र.</div>
     <div class="col-md-2">
       <%= f.text_field :reg_no, class:"col-md-4 form-control", 
-      value: get_reg_number(@visitors, f.object), disabled:"disabled" %>
+      value: f.object.reg_no, disabled:"disabled" %>
       <%= f.hidden_field :reg_no, class:"col-md-4 form-control", 
-      value: get_reg_number(@visitors, f.object) %>
+      value: f.object.reg_no %>
     </div>
   </div>
   <div class="row cstm-row">
