@@ -108,7 +108,10 @@
   <% end %>
   <div class="row cstm-row">
     <div class="col-md-offset-4 col-md-2">
-      <%= f.submit "सम्पादित करो", class: 'form-control btn-primary sbmt-btn-padding' %>
+      <%= f.submit "सुधार करो", class: 'form-control btn-primary sbmt-btn-padding' %>
+    </div>
+    <div class="col-md-1">
+      <%= link_to("delete करो", visitor_path(f.object.id), :method => :delete, class: 'btn btn-danger pull-right') %> 
     </div>
   </div>
 <%end%>

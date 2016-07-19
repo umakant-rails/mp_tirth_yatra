@@ -50,6 +50,13 @@ class VisitorsController < ApplicationController
     redirect_to new_visitor_path
   end
 
+  def destroy
+    @visitor.destroy
+    respond_to do |format|
+      format.html { redirect_to new_visitor_path, notice: 'Visitor was successfully destroyed.' }
+    end
+  end
+
   private
 
   def set_visitor
