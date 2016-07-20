@@ -36,3 +36,6 @@ tehsil_list.each do |tehsil |
   puts "Date entered for Tehsil : " + tehsil[:tehsil]
 end
 
+TourPlace.create!(name: 'Tour place - 1') if TourPlace.where(name: 'Tour place - 1').blank?
+TourPlace.create!(name: 'Tour place - 2') if TourPlace.where(name: 'Tour place - 2').blank?
+TourPlace.create!(name: 'Tour place - 3') if TourPlace.where(name: 'Tour place - 3').blank?

@@ -20,9 +20,9 @@
     <div class="col-md-2 col-md-offset-2">रजि.क्र.</div>
     <div class="col-md-2">
       <%= f.text_field :reg_no, class:"col-md-4 form-control", 
-      value: get_reg_number(@visitors, f.object), disabled:"disabled" %>
+      value: f.object.reg_no, disabled:"disabled" %>
       <%= f.hidden_field :reg_no, class:"col-md-4 form-control", 
-      value: get_reg_number(@visitors, f.object) %>
+      value: f.object.reg_no %>
     </div>
   </div>
   <div class="row cstm-row">
@@ -91,13 +91,13 @@
       <%= f.text_field :identity_number, class:"col-md-4 form-control" %>
     </div>
   </div>
-  <% if f.object.parent_id.present? %>
+  <% if f.object.parent_id.present? %> <!-- if visitor is assistant -->
     <div class="row cstm-row">
       <div class="col-md-4">
         <%= f.hidden_field :parent_id, class:"col-md-4 form-control" %>
       </div>
     </div>
-  <% else %>
+  <% elsif !f.object.assistant.present? %> 
     <div class="row cstm-row">
       <div class="col-md-2 col-md-offset-2"></div>
       <div class="col-md-4">

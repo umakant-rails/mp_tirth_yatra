@@ -8,14 +8,17 @@
   margin-right: 5px;
   border-bottom: 4px solid #3571bd;
   background: url(../assets/banner1.jpg);
+  background-color: #428bca;
   margin-left: -5px !important;
 }
 .left-logo-div img{ height: 66px;width: 480px;}
 .right-logo-div{
   background: url(../assets/banner1.jpg);
+  background-color: #428bca;
 }
 .bottom-bar .col-md-6,.bottom-bar .col-md-1 {
   background: url(../assets/banner1.jpg);
+  background-color: #428bca;
   padding: 5px;
   min-height: 40px;
   font: 18px bold;
@@ -54,5 +57,16 @@
 }
 .mrgn-right{
   margin-right: 10px;
+}
+.signin-top-logo-div{
+  background-color: #D90002;
+  text-align: center;
+}
+.signin-top-logo-div img{
+  height:55px !important;
+}
+.login-status-bar{
+  background-color: #00FFFF;
+  padding: 10px;
 }
 
