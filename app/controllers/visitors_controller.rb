@@ -1,7 +1,7 @@
 class VisitorsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_visitor, only: [:show, :edit, :update, :destroy]
-  before_action :get_visitors_and_tour_place,:only=>[:new, :create, :edit, :update]
+  before_action :get_visitors_and_tour_place,:only=>[:new, :create, :edit, :update, :export_exel]
 
   def index
     redirect_to new_visitor_path
@@ -46,8 +46,10 @@ class VisitorsController < ApplicationController
       if @visitor.update(visitor_params)
         if is_asst_form_attached == 1
           @assistant = Visitor.new(parent_id: @visitor.id)
+          format.html { render :new, notice: 'Visitor was successfully updated.' }
+        else
+          format.html { redirect_to new_visitor_path, notice: 'Visitor was successfully updated.' }
         end
-        format.html { render :new, notice: 'Visitor was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -59,6 +61,19 @@ class VisitorsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to new_visitor_path, notice: 'Visitor was successfully destroyed.' }
     end
+  end
+
+  def export_exel
+    respond_to do |format|
+      format.html
+      #format.csv { send_data @visitors.to_csv }
+      format.xls # { send_data @products.to_csv(col_sep: "\t") }
+    end
+  end
+
+  def import_exel
+    Visitor.import(params[:file], current_user, session[:tour_place])
+    redirect_to root_url, notice: "Visitor imported."
   end
 
   private
@@ -82,7 +97,7 @@ class VisitorsController < ApplicationController
       return true
     end
   end
-  
+
   def get_visitors_and_tour_place
     @tour_place = TourPlace.where(id: session[:tour_place]["id"]).first
     @visitors = @tour_place.visitors.where(:parent_id => nil).order(reg_no: :desc)

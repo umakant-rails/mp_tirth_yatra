@@ -5,7 +5,7 @@ class CreateVisitors < ActiveRecord::Migration[5.0]
       t.datetime :receipt_date
       t.string :religion
       t.string :name
-      t.boolean :sex
+      t.string :sex
       t.string :father_name
       t.string :address
       t.datetime :date_of_birth

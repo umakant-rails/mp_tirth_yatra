@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">क्र.</Data></Cell>
+        <Cell><Data ss:Type="String">रज़ि.क्र.</Data></Cell>
+        <Cell><Data ss:Type="String">आ. दिनांक</Data></Cell>
+        <Cell><Data ss:Type="String">धर्म</Data></Cell>
+        <Cell><Data ss:Type="String">नाम</Data></Cell>
+        <Cell><Data ss:Type="String">लिंग</Data></Cell>
+        <Cell><Data ss:Type="String">पिता का नाम</Data></Cell>
+        <Cell><Data ss:Type="String">पता</Data></Cell>
+        <Cell><Data ss:Type="String">जिला</Data></Cell>
+        <Cell><Data ss:Type="String">मो. नम्बर</Data></Cell>
+        <Cell><Data ss:Type="String">जन्म दिनांक</Data></Cell>
+        <Cell><Data ss:Type="String">आयु</Data></Cell>
+        <Cell><Data ss:Type="String">परिचय पत्र </Data></Cell>
+        <Cell><Data ss:Type="String">परिचय पत्र न.</Data></Cell>
+        <Cell><Data ss:Type="String">तह. न.</Data></Cell>
+        <Cell><Data ss:Type="String">यात्रा का नाम</Data></Cell>
+        <Cell><Data ss:Type="String">स्वयं/सहा.</Data></Cell>
+      </Row>
+      <% @visitors.each do |visitor| %>
+        <Row>
+          <Cell><Data ss:Type="Number"><%= visitor.id %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= visitor.reg_no %></Data></Cell>
+          <Cell><Data ss:Type="Date"><%= format_to_date(visitor.receipt_date) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= visitor.religion %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= visitor.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= (visitor.sex == true) ? 'Male' : 'Female' %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= visitor.father_name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= visitor.address %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= (visitor.user && visitor.user.district) ? visitor.user.district.name : '' %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= visitor.mobile_number %></Data></Cell>
+          <Cell><Data ss:Type="Date"><%= format_to_date(visitor.receipt_date) %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= visitor.age %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= visitor.identity_name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= visitor.identity_number %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= visitor.user_id %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= visitor.tour_place.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= (visitor.parent_id.present?) ? 'सहायक' : 'स्वयं' %></Data></Cell>
+        </Row>
+        <% if visitor.assistant.present? %>
+          <% assistant = visitor.assistant%>
+          <Row>
+            <Cell><Data ss:Type="Number"><%= assistant.id %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= assistant.reg_no %></Data></Cell>
+            <Cell><Data ss:Type="Date"><%= format_to_date(assistant.receipt_date) %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= assistant.religion %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= assistant.name %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= (assistant.sex == true) ? 'Male' : 'Female' %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= assistant.father_name %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= assistant.address %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= (assistant.user && assistant.user.district) ? assistant.user.district.name : '' %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= assistant.mobile_number %></Data></Cell>
+            <Cell><Data ss:Type="Date"><%= format_to_date(assistant.receipt_date) %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= assistant.age %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= assistant.identity_name %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= assistant.identity_number %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= assistant.user_id %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= assistant.tour_place.name %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= (assistant.parent_id.present?) ? 'सहायक' : 'स्वयं' %></Data></Cell>
+          </Row>
+        <% end %>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
+

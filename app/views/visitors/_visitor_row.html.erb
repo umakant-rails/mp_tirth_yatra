@@ -4,7 +4,7 @@
   <td><%= format_to_date(visitor.receipt_date) %></td>
   <td><%= visitor.religion %></td>
   <td><%= visitor.name %></td>
-  <td><%= (visitor.sex == true) ? 'Male' : 'Female' %></td>
+  <td><%= visitor.sex %></td>
   <td><%= visitor.father_name %></td>
   <td><%= visitor.address %></td>
   <td><%= (visitor.user && visitor.user.district) ? visitor.user.district.name : '' %></td>

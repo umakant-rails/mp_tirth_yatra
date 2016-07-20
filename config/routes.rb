@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   root 'home#index'
   #root 'devise/sessions#new'
   post '/homes/get_users' => "home#get_users"
-  resources :visitors
+  resources :visitors do 
+    get :export_exel, on: :collection
+    post :import_exel, on: :collection
+  end
   
   devise_for :users, controllers: {
     sessions: 'users/sessions'

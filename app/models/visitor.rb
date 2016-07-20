@@ -1,7 +1,8 @@
+require 'roo'
 class Visitor < ApplicationRecord
 
-  RELIGION = [['हिन्दू',1] ,['​मुस्लिम',2], ['सिख',3], ['ईसाई',4], ['अन्य', 5]]
-  SEX =[['पुरूष',1], ['​महिला',2]]
+  RELIGION = [['हिन्दू', 'हिन्दू'] ,['​मुस्लिम','​मुस्लिम'], ['सिख','सिख'], ['ईसाई','ईसाई'], ['अन्य', 'अन्य']]
+  SEX =[['पुरूष','पुरूष'], ['​महिला','​महिला']]
 
   belongs_to :user
   belongs_to :tour_place
@@ -31,6 +32,40 @@ class Visitor < ApplicationRecord
 
   def parent
     return Visitor.where(:id => self.parent_id).first
+  end
+
+  private
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |visitor|
+        csv << visitor.attributes.values_at(*column_names)
+      end
+    end
+  end
+
+  def self.import(file, current_user, tour_place)
+    spreadsheet = open_spreadsheet(file)
+    header = spreadsheet.row(1)
+    visitor = nil
+    (2..spreadsheet.last_row).each do |i|
+      row = spreadsheet.row(i)
+      visitor_hash = {reg_no: row[1], receipt_date: row[2], religion:
+      row[3], name: row[4], sex: row[5], father_name: row[6], address: row[7], mobile_number: row[9], date_of_birth: row[10], age: row[11], identity_name: row[12], identity_number: row[13], user_id: current_user.id, tour_place_id: tour_place['id']}
+
+      visitor_hash[:parent_id] = visitor.id if row[16] == "सहायक"
+      visitor = Visitor.create!(visitor_hash)
+    end
+  end
+
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+    when ".csv" then Roo::CSV.new(file.path, packed: nil, file_warning: :ignore)
+    when ".xls" then Roo::Excel.new(file.path, packed: nil, file_warning: :ignore)
+    when ".xlsx" then Roo::Excelx.new(file.path, packed: nil, file_warning: :ignore)
+    else raise "Unknown file type: #{file.original_filename}"
+    end
   end
 
 end
