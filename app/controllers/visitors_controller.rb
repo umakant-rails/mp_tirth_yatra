@@ -57,6 +57,7 @@ class VisitorsController < ApplicationController
   end
 
   def destroy
+    @visitor.assistant.destroy
     @visitor.destroy
     respond_to do |format|
       format.html { redirect_to new_visitor_path, notice: 'Visitor was successfully destroyed.' }

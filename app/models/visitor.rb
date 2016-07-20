@@ -59,8 +59,11 @@ class Visitor < ApplicationRecord
       row[10], age: row[11].to_i, identity_name: row[12],
       identity_number: identity_number , user_id: current_user.id, tour_place_id: tour_place['id']}
 
-      visitor_hash[:parent_id] = visitor.id if row[16] == "सहायक"
-      visitor = Visitor.create!(visitor_hash)
+      if row[16] == "सहायक"
+        visitor = self.find_visitor(row[1]) # passed reg no of visitor
+        visitor_hash[:parent_id] = visitor.id
+      end
+      Visitor.create!(visitor_hash) if self.is_visitor_exist?(row[1], row[16])
     end
   end
 
@@ -73,4 +76,16 @@ class Visitor < ApplicationRecord
     end
   end
 
+  def self.is_visitor_exist?(visitor_reg_no, type)
+    if type == "सहायक"
+      Visitor.where("reg_no = ? and parent_id is not NULL", visitor_reg_no).blank?
+    else
+      Visitor.where(reg_no: visitor_reg_no).blank?
+    end
+  end
+
+  def self.find_visitor(reg_no)
+    Visitor.where("reg_no = ? and parent_id is NULL", reg_no).first
+  end
+  
 end
