@@ -51,8 +51,13 @@ class Visitor < ApplicationRecord
     visitor = nil
     (2..spreadsheet.last_row).each do |i|
       row = spreadsheet.row(i)
-      visitor_hash = {reg_no: row[1], receipt_date: row[2], religion:
-      row[3], name: row[4], sex: row[5], father_name: row[6], address: row[7], mobile_number: row[9], date_of_birth: row[10], age: row[11], identity_name: row[12], identity_number: row[13], user_id: current_user.id, tour_place_id: tour_place['id']}
+      identity_number = row[13].is_a?(Float) ? row[13].to_i : row[13]
+
+      visitor_hash = {reg_no: row[1], receipt_date: row[2], 
+      religion: row[3], name: row[4], sex: row[5], father_name: row[6],
+      address: row[7], mobile_number: row[9].to_i, date_of_birth:
+      row[10], age: row[11].to_i, identity_name: row[12],
+      identity_number: identity_number , user_id: current_user.id, tour_place_id: tour_place['id']}
 
       visitor_hash[:parent_id] = visitor.id if row[16] == "सहायक"
       visitor = Visitor.create!(visitor_hash)
