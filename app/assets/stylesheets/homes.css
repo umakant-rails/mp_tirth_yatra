@@ -58,4 +58,15 @@
 .mrgn-right{
   margin-right: 10px;
 }
+.signin-top-logo-div{
+  background-color: #D90002;
+  text-align: center;
+}
+.signin-top-logo-div img{
+  height:55px !important;
+}
+.login-status-bar{
+  background-color: #00FFFF;
+  padding: 10px;
+}
 

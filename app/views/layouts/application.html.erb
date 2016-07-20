@@ -10,15 +10,24 @@
 
   <body>
     <div class="container-fluid cntner-fld">
-      <div class="row top-logo-bar">
-        <div class="col-md-11 left-logo-div">
-          <%= image_tag "logo0.jpg" %>
-          <% if current_user.present? %>
+      <% if current_user.present? %>
+        <div class="row top-logo-bar">
+          <div class="col-md-12 signin-top-logo-div">
+            <%= image_tag "logo0.jpg" %>
+          </div>
+          <div class="col-md-12 login-status-bar">
+            <div class="pull-left">आप लॉग इन है तहसील - <%= current_user.user_name.capitalize %></div>
             <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'btn btn-default pull-right') %> 
-          <% end %>
+          </div>
         </div>
-        <div class="col-md-1 right-logo-div"> <%= image_tag "mplogo1.jpg", class: 'mplogo-cls' %></div>
-      </div>
+      <% else %>
+        <div class="row top-logo-bar">
+          <div class="col-md-11 left-logo-div">
+            <%= image_tag "logo0.jpg" %>
+          </div>
+          <div class="col-md-1 right-logo-div"> <%= image_tag "mplogo1.jpg", class: 'mplogo-cls' %></div>
+        </div>
+      <% end %>
       <div class="row">
         <div id="alert_msg" class="col-md-8 col-md-offset-2 alert_message">
           <% if flash[:notice].present? %>
