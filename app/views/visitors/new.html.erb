@@ -1,121 +1,126 @@
-<div class="row cstm-row">
-  <div class="col-md-6 bdr col-md-offset-2">
-    <% if @assistant.present?  %>
-      <div class="col-md-offset-4"><h4>सहायक का फार्म (<%= @tour_place.name %> यात्रा)</h4></div>
-    <% else %>
-      <div class="col-md-offset-4"><h4>आवेदनकर्ता का फार्म (<%= @tour_place.name %> यात्रा)</h4></div>
-    <% end %>
-  </div>
-</div>
-<%= form_for ( @assistant.present? ? @assistant : @visitor) do |f| %>
-  <div id="alert_msg" class="col-md-8 col-md-offset-2 alert_message">
-    <% if f.object.errors.present? %>
-      <p class="alert notice alert-<%= flash[:notice].present? ? "success" : "danger"%>">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <%= f.object.errors.full_messages.join("<br/>").html_safe %>
-      </p>
-    <% end %>
-  </div>
+<div class="hinditext">
   <div class="row cstm-row">
-    <div class="col-md-2 col-md-offset-2">रजि.क्र.</div>
-    <div class="col-md-2">
-      <%= f.text_field :reg_no, class:"col-md-4 form-control", 
-      value: get_reg_number(@visitors, f.object), disabled:"disabled" %>
-      <%= f.hidden_field :reg_no, class:"col-md-4 form-control", 
-      value: get_reg_number(@visitors, f.object) %>
+    <div class="col-md-6 bdr col-md-offset-2 ">
+      <% if @assistant.present?  %>
+        <div class="col-md-offset-4">
+          <h4>lgk;d dk QkeZ <span class="engtext">(<%= @tour_place.name %></span> ;k=k<span class="engtext">)</span></h4>
+        </div>
+      <% else %>
+        <div class="col-md-offset-4">
+          <h4>vkosnudrkZ dk QkeZ   <span class="engtext">(<%= @tour_place.name %></span> ;k=k<span class="engtext">)</span></h4>
+        </div>
+      <% end %>
     </div>
   </div>
-  <div class="row cstm-row">
-    <div class="col-md-2 col-md-offset-2">आवेदन प्राप्ति दिनॉंक</div>
-    <div class="col-md-2">
-      <%= f.text_field :receipt_date, class:"col-md-4 form-control"%>
+  <%= form_for ( @assistant.present? ? @assistant : @visitor) do |f| %>
+    <div id="alert_msg" class="col-md-8 col-md-offset-2 alert_message">
+      <% if f.object.errors.present? %>
+        <p class="alert notice alert-<%= flash[:notice].present? ? "success" : "danger"%>">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <%= f.object.errors.full_messages.join("<br/>").html_safe %>
+        </p>
+      <% end %>
     </div>
-  </div>
-  <div class="row cstm-row">
-    <div class="col-md-2 col-md-offset-2">धर्म</div>
-    <div class="col-md-2">
-      <%#= f.select :religion, Visitor::RELIGION,  {prompt: 'धर्म चुनिये'}, class:"col-md-4 form-control" %>
-      <%= f.select :religion, Visitor::RELIGION, class:"col-md-4 form-control" %>
-    </div>
-  </div>
-  <div class="row cstm-row">
-    <div class="col-md-2 col-md-offset-2">नाम</div>
-    <div class="col-md-4">
-      <%= f.text_field :name, class:"col-md-4 form-control" %>
-    </div>
-  </div>
-  <div class="row cstm-row">
-    <div class="col-md-2 col-md-offset-2">लिंग</div>
-    <div class="col-md-2">
-      <%= f.select :sex, Visitor::SEX, class:"col-md-4 form-control" %>
-    </div>
-  </div>
-  <div class="row cstm-row">
-    <div class="col-md-2 col-md-offset-2">पिता/पति का नाम</div>
-    <div class="col-md-4">
-      <%= f.text_field :father_name, class:"col-md-4 form-control" %>
-    </div>
-  </div>
-  <div class="row cstm-row">
-    <div class="col-md-2 col-md-offset-2">पता</div>
-    <div class="col-md-4">
-      <%= f.text_field :address, class:"col-md-4 form-control" %>
-    </div>
-  </div>
-  <div class="row cstm-row">
-    <div class="col-md-2 col-md-offset-2">मोबाइल नम्बर</div>
-    <div class="col-md-4">
-      <%= f.text_field :mobile_number, class:"col-md-4 form-control" %>
-    </div>
-  </div>
-  <div class="row cstm-row">
-    <div class="col-md-2 col-md-offset-2">जन्म दिनॉंक</div>
-    <div class="col-md-2">
-      <%= f.text_field :date_of_birth, class:"col-md-4 form-control" %>
-    </div>
-    <div class="col-md-1">
-      <%= f.text_field :age, class:"col-md-1 form-control", disabled:"disabled" %>
-      <%= f.hidden_field :age, class:"col-md-1 form-control hidden_filed_age" %>
-    </div>
-    <div class="col-md-1" style="margin-left: -20px; font-size: 16px; margin-top: 6px;">वर्ष</div>
-  </div>
-  <div class="row cstm-row">
-    <div class="col-md-2 col-md-offset-2">परिचय पत्र</div>
-    <div class="col-md-4">
-      <%= f.text_field :identity_name, class:"col-md-4 form-control" %>
-    </div>
-  </div>
-  <div class="row cstm-row">
-    <div class="col-md-2 col-md-offset-2">परिचय पत्र का नम्बर</div>
-    <div class="col-md-4">
-      <%= f.text_field :identity_number, class:"col-md-4 form-control" %>
-    </div>
-  </div>
-  <% if f.object.parent_id.present? %>
     <div class="row cstm-row">
-      <div class="col-md-4">
-        <%= f.hidden_field :parent_id, class:"col-md-4 form-control" %>
+      <div class="col-md-2 col-md-offset-2">jft0 dz0</div>
+      <div class="col-md-2">
+        <%= f.text_field :reg_no, class:"col-md-4 form-control", 
+        value: get_reg_number(@visitors, f.object), disabled:"disabled" %>
+        <%= f.hidden_field :reg_no, class:"col-md-4 form-control", 
+        value: get_reg_number(@visitors, f.object) %>
       </div>
     </div>
-  <% else %>
     <div class="row cstm-row">
-      <div class="col-md-2 col-md-offset-2"></div>
-      <div class="col-md-4">
-        <%= check_box_tag 'is_asst_form_attached', 1, false, class:"col-md-1 parent-check-box" %>
-        <div class="parent-check-box-txt"> सहायक का फॉर्म संलग्न है</div>
+      <div class="col-md-2 col-md-offset-2">vkosnu izkfIr fnukad</div>
+      <div class="col-md-2">
+        <%= f.text_field :receipt_date, class:"col-md-4 form-control engtext"%>
       </div>
     </div>
-  <% end %>
-  <div class="row cstm-row">
-    <div class="col-md-offset-4 col-md-2">
-      <%= f.submit "सम्पादित करो", class: 'form-control btn-primary sbmt-btn-padding' %>
+    <div class="row cstm-row">
+      <div class="col-md-2 col-md-offset-2">/keZ</div>
+      <div class="col-md-2">
+        <%= f.select :religion, Visitor::RELIGION, {}, {class:"col-md-4 form-control"} %>
+      </div>
+    </div>
+    <div class="row cstm-row">
+      <div class="col-md-2 col-md-offset-2">uke</div>
+      <div class="col-md-4">
+        <%= f.text_field :name, class:"col-md-4 form-control hinditext" %>
+      </div>
+    </div>
+    <div class="row cstm-row">
+      <div class="col-md-2 col-md-offset-2">fyax</div>
+      <div class="col-md-2">
+        <%= f.select :sex, Visitor::SEX,{}, {class:"col-md-4 form-control"}%>
+      </div>
+    </div>
+    <div class="row cstm-row">
+      <div class="col-md-2 col-md-offset-2">firk@ifr dk uke </div>
+      <div class="col-md-4">
+        <%= f.text_field :father_name, class:"col-md-4 form-control" %>
+      </div>
+    </div>
+    <div class="row cstm-row">
+      <div class="col-md-2 col-md-offset-2">irk</div>
+      <div class="col-md-4">
+        <%= f.text_field :address, class:"col-md-4 form-control" %>
+      </div>
+    </div>
+    <div class="row cstm-row">
+      <div class="col-md-2 col-md-offset-2">eksckby uEcj</div>
+      <div class="col-md-4">
+        <%= f.text_field :mobile_number, class:"col-md-4 form-control engtext" %>
+      </div>
+    </div>
+    <div class="row cstm-row">
+      <div class="col-md-2 col-md-offset-2">tUe fnukad</div>
+      <div class="col-md-2">
+        <%= f.text_field :date_of_birth, class:"col-md-4 form-control engtext" %>
+      </div>
+      <div class="col-md-1">
+        <%= f.text_field :age, class:"col-md-1 form-control", disabled:"disabled" %>
+        <%= f.hidden_field :age, class:"col-md-1 form-control hidden_filed_age engtext" %>
+      </div>
+      <div class="col-md-1" style="margin-left: -20px; font-size: 16px; margin-top: 6px;">o"kZ</div>
+    </div>
+    <div class="row cstm-row">
+      <div class="col-md-2 col-md-offset-2">ifjp; i=</div>
+      <div class="col-md-4">
+        <%= f.text_field :identity_name, class:"col-md-4 form-control" %>
+      </div>
+    </div>
+    <div class="row cstm-row">
+      <div class="col-md-2 col-md-offset-2">ifjp; i= dk uEcj</div>
+      <div class="col-md-4">
+        <%= f.text_field :identity_number, class:"col-md-4 form-control" %>
+      </div>
     </div>
     <% if f.object.parent_id.present? %>
-      <div class="col-md-2" style="text-align: center;">
-        <%= f.link_to "छोड़ना", new_visitor_path, class: 'form-control btn-primary sbmt-btn-padding' %>
+      <div class="row cstm-row">
+        <div class="col-md-4">
+          <%= f.hidden_field :parent_id, class:"col-md-4 form-control" %>
+        </div>
+      </div>
+    <% else %>
+      <div class="row cstm-row">
+        <div class="col-md-2 col-md-offset-2"></div>
+        <div class="col-md-4">
+          <%= check_box_tag 'is_asst_form_attached', 1, false, class:"col-md-1 parent-check-box" %>
+          <div class="parent-check-box-txt">  lgk;d dk QkWeZ layXu gS</div>
+        </div>
       </div>
     <% end %>
-  </div>
-<%end%>
-<br/><div class="row bdr"></div><br/>
-<%= render partial: '/visitors/visitor_list', locals: {visitors: @visitors} %>
+    <div class="row cstm-row">
+      <div class="col-md-offset-4 col-md-2">
+        <%= f.submit "lEikfnr djks", class: 'form-control btn-primary sbmt-btn-padding' %>
+      </div>
+      <% if f.object.parent_id.present? %>
+        <div class="col-md-2" style="text-align: center;">
+          <%= f.link_to "NksMuk", new_visitor_path, class: 'form-control btn-primary sbmt-btn-padding' %>
+        </div>
+      <% end %>
+    </div>
+  <%end%>
+  <br/><div class="row bdr"></div><br/>
+  <%= render partial: '/visitors/visitor_list', locals: {visitors: @visitors} %>
+</div>

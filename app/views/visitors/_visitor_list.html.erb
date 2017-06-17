@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row engtext">
   <div class="col-md-2 pull-right">
     <%= link_to "Export Excel File", export_exel_visitors_path(format: "xls"), class: "form-control btn-primary sbmt-btn-padding col-md-2" %>
   </div>
@@ -19,32 +19,40 @@
   <table class="table table-bordered visitor-table">
     <thead class="thead-inverse">
       <tr>
-        <th>क्र.</th>
-        <th>रज़ि.क्र.</th>
-        <th>आ. दिनांक</th>
-        <th>धर्म</th>
-        <th>नाम</th>
-        <th>लिंग</th>
-        <th>पिता का नाम</th>
-        <th>पता</th>
-        <th>जिला</th>
-        <th>मो. नम्बर</th>
-        <th>जन्म दिनांक</th>
-        <th>आयु</th>
-        <th>परिचय पत्र </th>
-        <th>परिचय पत्र न.</th>
-        <th>तह. न.</th>
-        <th>यात्रा का नाम</th>
-        <th>स्वयं/सहा.</th>
+        <th>dz0</th>
+        <th>jft0 dz0</th>
+        <th>vk0 fnukad</th>
+        <th>/keZ</th>
+        <th>uke</th>
+        <th>fyax</th>
+        <th>firk dk uke</th>
+        <th>irk</th>
+        <th>ftyk</th>
+        <th>eks0 u0</th>
+        <th>tUe fnukad</th>
+        <th>vk;q</th>
+        <th>ifjp; i= </th>
+        <th>ifjp; i= dk uEcj</th>
+        <th>rg0 u0</th>
+        <th>;k=k dk uke</th>
+        <th>Lo;a@lgk</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      <% visitors.each do |visitor | %>
-        <%= render partial: '/visitors/visitor_row', locals: {visitor: visitor} %>
-        <% if visitor.assistant.present? %>
-          <%= render partial: '/visitors/visitor_row', locals: {visitor: visitor.assistant} %>
+      <% if visitors.present? %>
+        <% visitors.each do |visitor | %>
+          <%= render partial: '/visitors/visitor_row', locals: {visitor: visitor} %>
+          <% if visitor.assistant.present? %>
+            <%= render partial: '/visitors/visitor_row', locals: {visitor: visitor.assistant} %>
+          <% end %>
         <% end %>
+      <% else %>
+        <tr>
+          <td colspan="17">
+            <center>vHkh dksbZ fjdkMZ miyC/k ugh gS</center>
+          </td>
+        </tr>
       <% end %>
     </tbody>
   </table>

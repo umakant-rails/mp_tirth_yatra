@@ -1,8 +1,8 @@
 require 'roo'
 class Visitor < ApplicationRecord
 
-  RELIGION = [['हिन्दू', 'हिन्दू'] ,['​मुस्लिम','​मुस्लिम'], ['सिख','सिख'], ['ईसाई','ईसाई'], ['अन्य', 'अन्य']]
-  SEX =[['पुरूष','पुरूष'], ['​महिला','​महिला']]
+  RELIGION = [['fgUnw', 'fgUnw'] ,['eqfLye','eqfLye'], ['fl[k','fl[k'], ['bZlkbZ','bZlkbZ'], ['vU;', 'vU;']]
+  SEX =[['iq:"k','iq:"k'], ['efgyk','efgyk']]
 
   belongs_to :user
   belongs_to :tour_place
